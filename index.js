@@ -1,4 +1,4 @@
-require('dotenv').config();  // Make sure to load environment variables from .env file
+require('dotenv').config();
 const express = require('express');
 const winston = require('winston');
 const WinstonCloudWatch = require('winston-cloudwatch');
@@ -37,7 +37,7 @@ const logger = winston.createLogger({
     }),
 
     // OpenSearch Transport
-    new ElasticsearchTransport({
+    ElasticsearchTransport({
       level: 'info',
       client: esClient,
       indexPrefix: process.env.ES_INDEX_PREFIX || 'signal-logs',  // OpenSearch index prefix
