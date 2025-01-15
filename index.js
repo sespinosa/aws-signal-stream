@@ -23,6 +23,11 @@ const logger = winston.createLogger({
   ],
 });
 
+app.get('/', (req, res) => {
+  res.status(200).json({ message: 'POST to /log' });
+});
+
+
 app.post('/log', (req, res) => {
   const logData = req.body;
 
