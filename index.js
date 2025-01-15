@@ -35,7 +35,7 @@ const logger = winston.createLogger({
     new ElasticsearchTransport({
       level: 'info',
       client: esClient,
-      indexPrefix: 'logs',
+      indexPrefix: 'signal-logs',
       transformer: (logData) => ({
         message: logData.message,
         level: logData.level,
