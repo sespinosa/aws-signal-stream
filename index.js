@@ -4,7 +4,7 @@ const winston = require('winston');
 const WinstonCloudWatch = require('winston-cloudwatch');
 const AWS = require('aws-sdk');
 const morgan = require('morgan');
-const ElasticsearchTransport = require('winston-elasticsearch'); // Import as class
+const ElasticsearchTransport = require('winston-elasticsearch'); // Function-based transport
 const { Client } = require('@opensearch-project/opensearch');
 
 const app = express();
@@ -36,7 +36,7 @@ const logger = winston.createLogger({
       awsRegion: process.env.AWS_REGION || 'us-west-2',  // AWS region for CloudWatch
     }),
 
-    // OpenSearch Transport
+    // OpenSearch Transport (use directly as a function)
     new ElasticsearchTransport({
       level: 'info',
       client: esClient,
