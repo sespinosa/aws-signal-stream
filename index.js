@@ -4,7 +4,7 @@ const winston = require('winston');
 const WinstonCloudWatch = require('winston-cloudwatch');
 const AWS = require('aws-sdk');
 const morgan = require('morgan');
-const ElasticsearchTransport = require('winston-elasticsearch');
+const ElasticsearchTransport = require('winston-elasticsearch'); // Import as class
 const { Client } = require('@opensearch-project/opensearch');
 
 const app = express();
@@ -37,7 +37,7 @@ const logger = winston.createLogger({
     }),
 
     // OpenSearch Transport
-    ElasticsearchTransport({
+    new ElasticsearchTransport({
       level: 'info',
       client: esClient,
       indexPrefix: process.env.ES_INDEX_PREFIX || 'signal-logs',  // OpenSearch index prefix
