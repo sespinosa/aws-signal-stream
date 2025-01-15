@@ -2,11 +2,13 @@ const express = require('express');
 const winston = require('winston');
 const WinstonCloudWatch = require('winston-cloudwatch');
 const AWS = require('aws-sdk');
+const morgan = require('morgan');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 app.use(express.json());
+app.use(morgan('combined'));
 
 AWS.config.update({ region: 'us-west-2' });
 
