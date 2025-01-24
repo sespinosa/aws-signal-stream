@@ -13,6 +13,11 @@ const port = process.env.PORT || 3000;
 app.use(express.json());
 app.use(morgan('combined'));
 
+app.use((req, res, next) => {
+  res.setHeader('Referrer-Policy', 'no-referrer');
+  next();
+});
+
 // Configure AWS SDK for CloudWatch
 AWS.config.update({ region: process.env.AWS_REGION || 'us-west-2' });
 
