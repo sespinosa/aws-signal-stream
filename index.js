@@ -1,4 +1,5 @@
 require('dotenv').config();
+const cors = require('cors');
 const express = require('express');
 const winston = require('winston');
 const WinstonCloudWatch = require('winston-cloudwatch');
@@ -12,6 +13,9 @@ const port = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(morgan('combined'));
+
+// Allow CORS for all origins
+app.use(cors());
 
 app.use((req, res, next) => {
   res.setHeader('Referrer-Policy', 'no-referrer');
